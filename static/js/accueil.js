@@ -20,7 +20,7 @@ function append_item(data, bloc_id) {
     // exclure le meilleur film
       for (var i = 1; i < 7 ; i++) {
         var div = document.createElement("div");
-        div.class = "movie";
+        div.setAttribute("class", "movie");
         div.id = data.results[i].id;
         div.innerHTML ='<img src=' + data.results[i].image_url + ' alt='+data.results[i].title + '>';
         mainContainer.appendChild(div);
@@ -28,7 +28,7 @@ function append_item(data, bloc_id) {
     default:
         for (var i = 0; i < 6 ; i++) {
             var div = document.createElement("div");
-            div.class = "movie";
+            div.setAttribute("class", "movie");
             div.id = data.results[i].id;
             div.innerHTML ='<img src=' + data.results[i].image_url + ' alt='+data.results[i].title + '>';
             mainContainer.appendChild(div);
@@ -46,7 +46,7 @@ function get_bestmovie(){
         .then(function (data) {
             var mainContainer = document.getElementById("bestmovie");
             var div = document.createElement("div");
-            div.class = "movie";
+            div.setAttribute("class", "movie");
             div.id = data.results[0].id;
             div.innerHTML ='<img src=' + data.results[0].image_url + ' alt='+data.results[0].title + '>';
             mainContainer.appendChild(div);
@@ -58,3 +58,16 @@ function get_bestmovie(){
 
 
 
+var movies = document.getElementsByClassName("movie");
+var modal = document.getElementById("modal")
+var close_modal = document.getElementById("close_modal");
+movies.style.cursor = 'pointer';
+// When the user clicks on a movie, open the modal
+movies.onclick = function() {
+    modal.style.display = "block";
+};
+
+// When the user clicks on <span> (x), close the modal
+close_modal.onclick = function() {
+  modal.style.display = "none";
+}
