@@ -9,77 +9,86 @@
     </head>
 
     <body>
-        <div id="headersection">
-            <header>
+        <header>
+            <div id=site>
                 <h1>JustSteamIt</h1>
-                <nav>
-                    <a href="/accueil/">Accueil</a>
-                    <a href="/categories/">Categories</a>
-                </nav>
-            </header>
-        </div>
+            </div>
+            <nav id="header_nav" aria-label="Main navigation">
+                <a href="/accueil/">Accueil</a>
+                <a href="/categories/">Categories</a>
+            </nav>
+        </header>
 
         <div id="bestmovie_section">
             <!-- Best movie -->
+            <button id="button-play">Play</button>
             <div id="bestmovie">
                 <script type="text/javascript">get_bestmovie()</script>
+                <script type="text/javascript"></script>
             </div>
-            <button class="button-play">Play</button>
-            <p>resume du film</p>
         </div>
 
         
         <!-- best rated movies -->
         <h2>Films les mieux notés</h2>
-        <div id="bestrated" class="carousel">
-            <a class="left_sliderButton"> < </a>
-            <div id="bestrated_list">
+        <div id="bestrated" class="category">
+            <button class="leftbutton nav_btn"> ᐊ </button>
+            <div id="bestrated_list" class="carousel">
                 <script type="text/javascript">get_listmovies("", "bestrated_list")</script>
             </div>
-            <a class="right_sliderButton"> > </a>
+            <button class="rightbutton nav_btn"> ᐅ </button>
         </div>
         
         <!-- category 1 movies -->
         <h2>Action</h2>
-        <div id="action" class="carousel">
-            <a class="left_sliderButton"> < </a>
-            <div id="action_list">
+        <div id="action" class="category">
+            <button class="leftbutton nav_btn"> ᐊ </button>
+            <div id="action_list" class="carousel">
                 <script type="text/javascript">get_listmovies("action", "action_list")</script>
             </div>
-            <a class="right_sliderButton"> > </a>
+            <button class="rightbutton nav_btn"> ᐅ </button>
         </div>
 
         <!-- category 2 movies-->
         <h2>Comedy</h2>
-        <div id="comedy" class="carousel">
-            <a class="left_sliderButton"> < </a>
-            <div id="comedy_list">
+        <div id="comedy" class="category">
+            <button class="leftbutton nav_btn"> ᐊ </button>
+            <div id="comedy_list" class="carousel">
                 <script type="text/javascript">get_listmovies("comedy", "comedy_list")</script>
             </div>
-            <a class="right_sliderButton"> > </a>
+            <button class="rightbutton nav_btn"> ᐅ </button>
         </div>
         
         <!-- category 3 movies-->
         <h2>Drama</h2>
-        <div id="drama" class="carousel">
-            <a class="left_sliderButton"> < </a>
-            <div id="drama_list">
+        <div id="drama" class="category">
+            <button class="leftbutton nav_btn"> ᐊ </button>
+            <div id="drama_list"  class="carousel">
                 <script type="text/javascript">get_listmovies("drama", "drama_list")</script>
             </div>
-            <a class="right_sliderButton"> > </a>
+            <button class="rightbutton nav_btn"> ᐅ </button>
         </div>
 
+        <!-- The Modal -->
         <div class="modal">
-          <!-- Modal content -->
-          <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <p>Some text in the Modal..</p>
-          </div>
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close_modal">&times;</span>
+                    <h2>Modal Header</h2>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the Modal Body</p>
+                    <p>Some other text...</p>
+                </div>
+                <div class="modal-footer">
+                    <h3>Modal Footer</h3>
+                </div>
+            </div>
         </div>
 
         <footer>
             <p>Copyright JustStreamIt</p>
         </footer>
-
     </body>
 </html>
