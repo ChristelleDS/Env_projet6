@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="/static/css/style.css"/>
+        <title>JustSteamIt</title>
+        <script type="text/javascript" src="/static/js/accueil.js">
+        </script>
+    </head>
+
+    <body>
+        <div id="headersection">
+            <header>
+                <h1>JustSteamIt</h1>
+                <nav>
+                    <a href="/accueil/">Accueil</a>
+                    <a href="/categories/">Categories</a>
+                </nav>
+            </header>
+        </div>
+
+        <div id="bestmovie">
+            <!-- Best movie -->
+            <script type="text/javascript">get_bestmovie()</script>
+            <button class="button-play">Play</button>
+            <p>resume du film</p>
+        </div>
+
+        
+        <!-- best rated movies -->
+        <h2>Films les mieux notés</h2>
+        <div id="bestrated" class="carousel">
+            <a class="left_sliderButton"> < </a>
+            <div id="bestrated_list">
+                <script type="text/javascript">get_bestrated()</script>
+            </div>
+            <a class="right_sliderButton"> > </a>
+        </div>
+        
+        <!-- category 1 movies -->
+        <h2>Action</h2>
+        <div id="action" class="carousel">
+            <a class="left_sliderButton"> < </a>
+            <div id="action_list">
+                <script type="text/javascript">get_listmovies("action", "action_list")</script>
+            </div>
+            <a class="right_sliderButton"> > </a>
+        </div>
+
+        <!-- category 2 movies-->
+        <h2>Comedy</h2>
+        <div id="comedy" class="carousel">
+            <a class="left_sliderButton"> < </a>
+            <div id="comedy_list">
+                <script type="text/javascript">get_listmovies("comedy", "comedy_list")</script>
+            </div>
+            <a class="right_sliderButton"> > </a>
+        </div>
+        
+        <!-- category 3 movies-->
+        <h2>Drama</h2>
+        <div id="drama" class="carousel">
+            <a class="left_sliderButton"> < </a>
+            <div id="drama_list">
+                <script type="text/javascript">get_listmovies("drama", "drama_list")</script>
+            </div>
+            <a class="right_sliderButton"> > </a>
+        </div>
+
+
+        <footer>
+            <p>Copyright JustStreamIt</p>
+        </footer>
+
+    </body>
+</html>
