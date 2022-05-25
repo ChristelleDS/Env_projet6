@@ -1,28 +1,3 @@
-function get_bestrated(){
-  fetch('http://localhost:8000/api/v1/titles/?sort_by=-imdb_score')
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (data) {
-        append_bestrated(data);
-    })
-    .catch(function (err) {
-        console.log(err);
-    });
-}
-
-function append_bestrated(data) {
-  var mainContainer = document.getElementById("bestrated_list");
-  for (var i = 1; i < 8 ; i++) {
-    var div = document.createElement("div");
-    div.class = "movie"
-    div.innerHTML = 'Movie ' + i + ' : '+ data.results[i].id + ' ' 
-    + '<img src=' + data.results[i].image_url + 'alt='+data.results[i].title + '>';
-    mainContainer.appendChild(div);
-  }
-}
-
-
 function get_listmovies(genre, bloc_id){
     url = 'http://localhost:8000/api/v1/titles/?genre='+genre+'&sort_by=-imdb_score'
     fetch(url)
@@ -40,12 +15,46 @@ function get_listmovies(genre, bloc_id){
 
 function append_item(data, bloc_id) {
   var mainContainer = document.getElementById(bloc_id);
-  for (var i = 0; i < 7 ; i++) {
-    var div = document.createElement("div");
-    div.class = "movie"
-    div.innerHTML = 'Movie ' + i + ' : '+ data.results[i].id + ' ' 
-    + '<img src=' + data.results[i].image_url + 'alt='+data.results[i].title + '>';
-    mainContainer.appendChild(div);
-  }
+  switch (bloc_id){
+    case 'bestrated_list':
+    // exclure le meilleur film
+      for (var i = 1; i < 7 ; i++) {
+        var div = document.createElement("div");
+        div.class = "movie";
+        div.id = data.results[i].id;
+        div.innerHTML ='<img src=' + data.results[i].image_url + ' alt='+data.results[i].title + '>';
+        mainContainer.appendChild(div);
+      }
+    default:
+        for (var i = 0; i < 6 ; i++) {
+            var div = document.createElement("div");
+            div.class = "movie";
+            div.id = data.results[i].id;
+            div.innerHTML ='<img src=' + data.results[i].image_url + ' alt='+data.results[i].title + '>';
+            mainContainer.appendChild(div);
+          }
+    }
 }
+
+
+
+function get_bestmovie(){
+    fetch('http://localhost:8000/api/v1/titles/?sort_by=-imdb_score')
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            var mainContainer = document.getElementById("bestmovie");
+            var div = document.createElement("div");
+            div.class = "movie";
+            div.id = data.results[0].id;
+            div.innerHTML ='<img src=' + data.results[0].image_url + ' alt='+data.results[0].title + '>';
+            mainContainer.appendChild(div);
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
+}
+
+
 
