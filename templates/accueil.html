@@ -19,9 +19,11 @@
             </header>
         </div>
 
-        <div id="bestmovie">
+        <div id="bestmovie_section">
             <!-- Best movie -->
-            <script type="text/javascript">get_bestmovie()</script>
+            <div id="bestmovie">
+                <script type="text/javascript">get_bestmovie()</script>
+            </div>
             <button class="button-play">Play</button>
             <p>resume du film</p>
         </div>
@@ -32,7 +34,7 @@
         <div id="bestrated" class="carousel">
             <a class="left_sliderButton"> < </a>
             <div id="bestrated_list">
-                <script type="text/javascript">get_bestrated()</script>
+                <script type="text/javascript">get_listmovies("", "bestrated_list")</script>
             </div>
             <a class="right_sliderButton"> > </a>
         </div>
@@ -67,6 +69,13 @@
             <a class="right_sliderButton"> > </a>
         </div>
 
+        <div class="modal">
+          <!-- Modal content -->
+          <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <p>Some text in the Modal..</p>
+          </div>
+        </div>
 
         <footer>
             <p>Copyright JustStreamIt</p>
