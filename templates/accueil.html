@@ -19,6 +19,22 @@
             </nav>
         </header>
 
+                <!-- Modale -->
+        <div class="modal_container">
+            <!-- Overlay -->
+            <div class="overlay modal_trigger"></div>
+            <!-- Contenu de la modale -->
+            <div class="modal" role="dialog" aria-labelledby="movietitle" aria-describedby="movie_det">
+                <button class="close_modal modal_trigger">X</button>
+                <p>texte blablablalbla</p>
+                <div id="movie_details">
+                    <script type="text/javascript">get_moviedetails()</script>
+                </div>
+            </div>
+        </div>
+
+        <button class="modal_btn modal_trigger"> Test modal </button>
+
         <div id="bestmovie_section">
             <!-- Best movie -->
             <button id="button-play">Play</button>
@@ -69,23 +85,7 @@
             <button class="rightbutton nav_btn"> ᐅ </button>
         </div>
 
-        <!-- The Modal -->
-        <div class="modal">
-            <!-- Modal content -->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <span class="close_modal">&times;</span>
-                    <h2>Modal Header</h2>
-                </div>
-                <div class="modal-body">
-                    <p>Some text in the Modal Body</p>
-                    <p>Some other text...</p>
-                </div>
-                <div class="modal-footer">
-                    <h3>Modal Footer</h3>
-                </div>
-            </div>
-        </div>
+
 
         <footer>
             <p>Copyright JustStreamIt</p>
