@@ -77,7 +77,7 @@ function get_moviedetails(){
                 var mainContainer = document.getElementById("movie_details");
                 var div = document.createElement("div");
                 div.setAttribute("class", "movie_details");
-                div.innerHTML ='<p>' + data.title+'</p>'
+                div.innerHTML ='<h2>' + data.title+'</h2>'
                     + '<br /><img id ="moviecover" src=' + data.image_url + ' alt="image">'
                     + '<br /><p><b>Genre: </b>' + data.genres 
                     + '<br /><b>Date de sortie: </b>' + data.date_published 
