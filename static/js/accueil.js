@@ -47,8 +47,9 @@ function get_bestmovie(){
             var mainContainer = document.getElementById("bestmovie");
             var div = document.createElement("div");
             div.setAttribute("class", "movie");
-            div.id = data.results[0].id;
-            div.innerHTML ='<img src=' + data.results[0].image_url + ' alt='+data.results[0].title + '>';
+            div.setAttribute("id", data.results[0].id);
+            div.innerHTML ='<p class="best_name">' + data.results[0].title + '</p>' +
+            '<img src=' + data.results[0].image_url+ ' alt='+data.results[0].title + '>';
             mainContainer.appendChild(div);
         })
         .catch(function (err) {
@@ -57,17 +58,40 @@ function get_bestmovie(){
 }
 
 
+const modalContainer = document.querySelector(".modal_container");
+const modalTriggers = document.querySelectorAll(".modal_trigger");
 
-var movies = document.getElementsByClassName("movie");
-var modal = document.getElementById("modal")
-var close_modal = document.getElementById("close_modal");
-movies.style.cursor = 'pointer';
-// When the user clicks on a movie, open the modal
-movies.onclick = function() {
-    modal.style.display = "block";
-};
+modalTriggers.forEach(trigger => trigger.addEventListener("click", toggleModal));
 
-// When the user clicks on <span> (x), close the modal
-close_modal.onclick = function() {
-  modal.style.display = "none";
+function toggleModal(){
+    modalContainer.classList.toggle("active")
+}
+
+function get_moviedetails(){
+    url = 'http://localhost:8000/api/v1/titles/9'
+        fetch(url)
+            .then(function (response) {
+            return response.json();
+            })
+            .then(function (data) {
+                var mainContainer = document.getElementById("movie_details");
+                var div = document.createElement("div");
+                div.setAttribute("class", "movie_details");
+                div.innerHTML ='<h2>' + data.title+'</h2>'
+                    + '<br /><img id ="moviecover" src=' + data.image_url + ' alt="image">'
+                    + '<br /><p><b>Genre: </b>' + data.genres 
+                    + '<br /><b>Date de sortie: </b>' + data.date_published 
+                    + '<br /><b>Rated: </b>' + data.rated
+                    + '<br /><b>Score Imdb: </b>' + data.imdb_score
+                    + '<br /><b>Réalisateur(s): </b>' + data.directors
+                    + '<br /><b>Acteurs: </b>' + data.actors
+                    + '<br /><b>Durée: </b>' + data.duration
+                    + '<br /><b>Pays: </b>' + data.countries
+                    + '<br /><b>Box office: </b>' + data.worldwide_gross_income
+                    + '<br /><b>Résumé: </b>' + data.long_description + '</p>';
+                mainContainer.appendChild(div);
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
 }
