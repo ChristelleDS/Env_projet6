@@ -86,9 +86,16 @@ h2
     flex-wrap: nowrap;
     align-items: center;
     height: cover;
-    width:100%;
-    margin-top: 20px;
-    margin-bottom: 40px;
+    width:80%;
+    margin: 0 auto;
+}
+#bestmovie_title
+{
+
+}
+
+#desc{
+    max-width: 200px;
 }
 
 .category{
@@ -106,7 +113,7 @@ h2
     align-items: center;
 }
 
-.carousel .movie
+.movie
 {
     display:  flex;
     border: 2px solid black;
@@ -120,7 +127,7 @@ h2
     overflow: hidden;
 }
 
-.carousel .movie:hover
+.movie:hover
 {
     transform: scale(1.2);
 }
@@ -145,11 +152,11 @@ h2
 
 .leftbutton
 {
-    left: 0;
+    left: 20px;
 }
 .rightbutton
 {
-    right: 0;
+    right: 20px;
 }
 
 

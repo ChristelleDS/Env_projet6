@@ -1,3 +1,4 @@
+/* reste a gerer les pages multiples */
 function get_listmovies(genre, bloc_id){
     url = 'http://localhost:8000/api/v1/titles/?genre='+genre+'&sort_by=-imdb_score'
     fetch(url)
@@ -13,27 +14,26 @@ function get_listmovies(genre, bloc_id){
 }
 
 
-/* reste a gerer les pages multiples */
 function append_item(data, bloc_id) {
   var mainContainer = document.getElementById(bloc_id);
   switch (bloc_id){
     case 'bestrated_list':
     // exclure le meilleur film
       for (var i = 1; i < 7 ; i++) {
-        var div = document.createElement("div");
-        div.setAttribute("class", "movie modal_trigger");
+        var div = document.createElement("button");
+        div.setAttribute("class", "modal_trigger movie");
         div.setAttribute("role", "dialog")
         div.setAttribute("id", data.results[i].id);
-        div.innerHTML ='<img src=' + data.results[i].image_url + ' alt='+data.results[i].title + '>';
+        div.innerHTML ='<img src=' + data.results[i].image_url + ' alt="'+ data.results[i].title + '">';
         mainContainer.appendChild(div);
       }
     default:
         for (var i = 0; i < 6 ; i++) {
-            var div = document.createElement("div");
-            div.setAttribute("class", "movie modal_trigger");
+            var div = document.createElement("button");
+            div.setAttribute("class", "modal_trigger movie");
             div.setAttribute("role", "dialog")
             div.setAttribute("id", data.results[i].id);
-            div.innerHTML ='<img src=' + data.results[i].image_url + ' alt='+data.results[i].title + '>';
+            div.innerHTML ='<img src=' + data.results[i].image_url + ' alt="'+ data.results[i].title + '">';
             mainContainer.appendChild(div);
           }
     }
@@ -72,12 +72,15 @@ function get_bestmovie(){
         .then(function (data) {
             var mainContainer = document.getElementById("bestmovie");
             var div = document.createElement("div");
-            div.setAttribute("class", "movie modal_trigger");
-            div.setAttribute("role", "dialog")
+            div.setAttribute("class", "bestmovie");
             div.setAttribute("id", data.results[0].id);
-            div.innerHTML ='<p class="best_name">' + data.results[0].title + '</p>' +
-            '<button class="modal_trigger"><img src=' + data.results[0].image_url+ ' alt='+data.results[0].title + '></button>';
+            div.innerHTML = '<img src=' + data.results[0].image_url + ' alt='+data.results[0].title + '>';
             mainContainer.appendChild(div);
+            var mainContainer = document.getElementById("bestmovie_title")
+            var h2 = document.createElement("h2");
+            h2.setAttribute("class", "bestmovie_title");
+            h2.innerHTML = data.results[0].title;
+            mainContainer.appendChild(h2);
             get_description(data.results[0].id);
         })
         .catch(function (err) {
@@ -93,7 +96,7 @@ get_bestmovie();
 
 /* récupérer les informations sur un film, pour affichage dans la modale*/
 function get_moviedetails(movie_id){
-    url = 'http://localhost:8000/api/v1/titles/'+movie_id
+    url = 'http://localhost:8000/api/v1/titles/'+movie_id;
         fetch(url)
             .then(function (response) {
             return response.json();
@@ -130,9 +133,7 @@ modalTriggers.forEach(trigger => trigger.addEventListener("click", openModal));
 
 function openModal(){
     modalContainer.classList.toggle("active");
-    var elt = this;
-    var idElt = this.getAttribute('id')
-    get_moviedetails(idElt);
+    get_moviedetails(this.id);
 }
 
 

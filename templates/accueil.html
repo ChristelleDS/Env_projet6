@@ -23,19 +23,19 @@
 
         <div id="bestmovie_section">
             <!-- Best movie -->
-            <button id="button-play">Play</button>
-            <div id="bestmovie">
-            </div>
-            <div id="desc">
-            </div>
+            <div id="bestmovie"></div>
+            <div id="bestmovie_title"></div>
+            <button id="button-play" class="modal_trigger">Play</button>
+            <div id="desc"></div>
         </div>
         
         <!-- best rated movies -->
         <h2>Films les mieux notés</h2>
         <div id="bestrated" class="category">
             <button class="leftbutton nav_btn" onclick="sliderScrollLeft()"> ᐊ </button>
-            <div id="bestrated_list" class="carousel">
-            </div>
+             <button class="modal_trigger" role="dialog" aria-labelledby="best movies" aria-describedby="best movies">
+                <div id="bestrated_list" class="carousel"></div>
+            </button>
             <button class="rightbutton nav_btn" onclick="sliderScrollRight()"> ᐅ </button>
         </div>
         
@@ -43,8 +43,7 @@
         <h2>Action</h2>
         <div id="action" class="category">
             <button class="leftbutton nav_btn" onclick="sliderScrollLeft()"> ᐊ </button>
-            <div id="action_list" class="carousel">
-            </div>
+            <div id="action_list" class="carousel"></div>
             <button class="rightbutton nav_btn" onclick="sliderScrollRight()"> ᐅ </button>
         </div>
 
@@ -52,8 +51,7 @@
         <h2>Comedy</h2>
         <div id="comedy" class="category">
             <button class="leftbutton nav_btn" onclick="sliderScrollLeft()"> ᐊ </button>
-            <div id="comedy_list" class="carousel">
-            </div>
+            <div id="comedy_list" class="carousel"></div>
             <button class="rightbutton nav_btn" onclick="sliderScrollRight()"> ᐅ </button>
         </div>
         
@@ -61,8 +59,7 @@
         <h2>Drama</h2>
         <div id="drama" class="category">
             <button class="leftbutton nav_btn" onclick="sliderScrollLeft()"> ᐊ </button>
-            <div id="drama_list"  class="carousel">
-            </div>
+            <div id="drama_list"  class="carousel"></div>
             <button class="rightbutton nav_btn" onclick="sliderScrollRight()"> ᐅ </button>
         </div>
 
@@ -78,7 +75,7 @@
             </div>
         </div>
 
-        <button class="modal_btn modal_trigger"> Test modal </button>
+        <!-- <button class="modal_btn modal_trigger"> Test modal </button>  -->
 
         <script src="/static/js/accueil.js"></script>
 
