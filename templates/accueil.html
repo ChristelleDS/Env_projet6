@@ -4,11 +4,13 @@
         <meta charset="utf-8" />
         <link rel="stylesheet" href="/static/css/style.css"/>
         <title>JustSteamIt</title>
-        <script type="text/javascript" src="/static/js/accueil.js">
-        </script>
-    </head>
+        
+    </head>    
+
+    <script defer src="/static/js/accueil.js"></script>
 
     <body>
+
         <header>
             <div id=site>
                 <h1>JustSteamIt</h1>
@@ -19,6 +21,48 @@
             </nav>
         </header>
 
+        <div id="bestmovie_section">
+            <!-- Best movie -->
+            <div id="bestmovie"></div>
+            <div id="bestmovie_title"></div>
+            <button id="button-play" class="modal_trigger">Play</button>
+            <div id="desc"></div>
+        </div>
+        
+        <!-- best rated movies -->
+        <h2>Films les mieux notés</h2>
+        <div id="bestrated" class="category">
+            <button class="leftbutton nav_btn" onclick="sliderScrollLeft()"> ᐊ </button>
+             <button class="modal_trigger" role="dialog" aria-labelledby="best movies" aria-describedby="best movies">
+                <div id="bestrated_list" class="carousel"></div>
+            </button>
+            <button class="rightbutton nav_btn" onclick="sliderScrollRight()"> ᐅ </button>
+        </div>
+        
+        <!-- category 1 movies -->
+        <h2>Action</h2>
+        <div id="action" class="category">
+            <button class="leftbutton nav_btn" onclick="sliderScrollLeft()"> ᐊ </button>
+            <div id="action_list" class="carousel"></div>
+            <button class="rightbutton nav_btn" onclick="sliderScrollRight()"> ᐅ </button>
+        </div>
+
+        <!-- category 2 movies-->
+        <h2>Comedy</h2>
+        <div id="comedy" class="category">
+            <button class="leftbutton nav_btn" onclick="sliderScrollLeft()"> ᐊ </button>
+            <div id="comedy_list" class="carousel"></div>
+            <button class="rightbutton nav_btn" onclick="sliderScrollRight()"> ᐅ </button>
+        </div>
+        
+        <!-- category 3 movies-->
+        <h2>Drama</h2>
+        <div id="drama" class="category">
+            <button class="leftbutton nav_btn" onclick="sliderScrollLeft()"> ᐊ </button>
+            <div id="drama_list"  class="carousel"></div>
+            <button class="rightbutton nav_btn" onclick="sliderScrollRight()"> ᐅ </button>
+        </div>
+
                 <!-- Modale -->
         <div class="modal_container">
             <!-- Overlay -->
@@ -26,66 +70,14 @@
             <!-- Contenu de la modale -->
             <div class="modal" role="dialog" aria-labelledby="movietitle" aria-describedby="movie_det">
                 <button class="close_modal modal_trigger">X</button>
-                <p>texte blablablalbla</p>
                 <div id="movie_details">
-                    <script type="text/javascript">get_moviedetails()</script>
                 </div>
             </div>
         </div>
 
-        <button class="modal_btn modal_trigger"> Test modal </button>
+        <!-- <button class="modal_btn modal_trigger"> Test modal </button>  -->
 
-        <div id="bestmovie_section">
-            <!-- Best movie -->
-            <button id="button-play">Play</button>
-            <div id="bestmovie">
-                <script type="text/javascript">get_bestmovie()</script>
-                <script type="text/javascript"></script>
-            </div>
-        </div>
-
-        
-        <!-- best rated movies -->
-        <h2>Films les mieux notés</h2>
-        <div id="bestrated" class="category">
-            <button class="leftbutton nav_btn"> ᐊ </button>
-            <div id="bestrated_list" class="carousel">
-                <script type="text/javascript">get_listmovies("", "bestrated_list")</script>
-            </div>
-            <button class="rightbutton nav_btn"> ᐅ </button>
-        </div>
-        
-        <!-- category 1 movies -->
-        <h2>Action</h2>
-        <div id="action" class="category">
-            <button class="leftbutton nav_btn"> ᐊ </button>
-            <div id="action_list" class="carousel">
-                <script type="text/javascript">get_listmovies("action", "action_list")</script>
-            </div>
-            <button class="rightbutton nav_btn"> ᐅ </button>
-        </div>
-
-        <!-- category 2 movies-->
-        <h2>Comedy</h2>
-        <div id="comedy" class="category">
-            <button class="leftbutton nav_btn"> ᐊ </button>
-            <div id="comedy_list" class="carousel">
-                <script type="text/javascript">get_listmovies("comedy", "comedy_list")</script>
-            </div>
-            <button class="rightbutton nav_btn"> ᐅ </button>
-        </div>
-        
-        <!-- category 3 movies-->
-        <h2>Drama</h2>
-        <div id="drama" class="category">
-            <button class="leftbutton nav_btn"> ᐊ </button>
-            <div id="drama_list"  class="carousel">
-                <script type="text/javascript">get_listmovies("drama", "drama_list")</script>
-            </div>
-            <button class="rightbutton nav_btn"> ᐅ </button>
-        </div>
-
-
+        <script src="/static/js/accueil.js"></script>
 
         <footer>
             <p>Copyright JustStreamIt</p>
