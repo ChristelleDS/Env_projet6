@@ -13,6 +13,7 @@ function get_listmovies(genre, bloc_id){
 }
 
 
+/* reste a gerer les pages multiples */
 function append_item(data, bloc_id) {
   var mainContainer = document.getElementById(bloc_id);
   switch (bloc_id){
@@ -20,16 +21,18 @@ function append_item(data, bloc_id) {
     // exclure le meilleur film
       for (var i = 1; i < 7 ; i++) {
         var div = document.createElement("div");
-        div.setAttribute("class", "movie");
-        div.id = data.results[i].id;
+        div.setAttribute("class", "movie modal_trigger");
+        div.setAttribute("role", "dialog")
+        div.setAttribute("id", data.results[i].id);
         div.innerHTML ='<img src=' + data.results[i].image_url + ' alt='+data.results[i].title + '>';
         mainContainer.appendChild(div);
       }
     default:
         for (var i = 0; i < 6 ; i++) {
             var div = document.createElement("div");
-            div.setAttribute("class", "movie");
-            div.id = data.results[i].id;
+            div.setAttribute("class", "movie modal_trigger");
+            div.setAttribute("role", "dialog")
+            div.setAttribute("id", data.results[i].id);
             div.innerHTML ='<img src=' + data.results[i].image_url + ' alt='+data.results[i].title + '>';
             mainContainer.appendChild(div);
           }
@@ -37,6 +40,29 @@ function append_item(data, bloc_id) {
 }
 
 
+get_listmovies("", "bestrated_list");
+get_listmovies("action", "action_list");
+get_listmovies("comedy", "comedy_list");
+get_listmovies("drama", "drama_list");
+
+
+/* récupérer la description du meilleur film */
+function get_description(movie_id){
+    url =  'http://localhost:8000/api/v1/titles/'+movie_id
+    fetch(url)   
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            var mainContainer = document.getElementById("desc");
+            var p = document.createElement("p");
+            p.innerHTML= data.description;
+            mainContainer.appendChild(p);
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
+}
 
 function get_bestmovie(){
     fetch('http://localhost:8000/api/v1/titles/?sort_by=-imdb_score')
@@ -46,29 +72,28 @@ function get_bestmovie(){
         .then(function (data) {
             var mainContainer = document.getElementById("bestmovie");
             var div = document.createElement("div");
-            div.setAttribute("class", "movie");
+            div.setAttribute("class", "movie modal_trigger");
+            div.setAttribute("role", "dialog")
             div.setAttribute("id", data.results[0].id);
             div.innerHTML ='<p class="best_name">' + data.results[0].title + '</p>' +
-            '<img src=' + data.results[0].image_url+ ' alt='+data.results[0].title + '>';
+            '<button class="modal_trigger"><img src=' + data.results[0].image_url+ ' alt='+data.results[0].title + '></button>';
             mainContainer.appendChild(div);
+            get_description(data.results[0].id);
         })
         .catch(function (err) {
             console.log(err);
         });
 }
 
+get_bestmovie();
 
-const modalContainer = document.querySelector(".modal_container");
-const modalTriggers = document.querySelectorAll(".modal_trigger");
 
-modalTriggers.forEach(trigger => trigger.addEventListener("click", toggleModal));
 
-function toggleModal(){
-    modalContainer.classList.toggle("active")
-}
+/* Gestion de la fenetre modale */
 
-function get_moviedetails(){
-    url = 'http://localhost:8000/api/v1/titles/9'
+/* récupérer les informations sur un film, pour affichage dans la modale*/
+function get_moviedetails(movie_id){
+    url = 'http://localhost:8000/api/v1/titles/'+movie_id
         fetch(url)
             .then(function (response) {
             return response.json();
@@ -77,9 +102,10 @@ function get_moviedetails(){
                 var mainContainer = document.getElementById("movie_details");
                 var div = document.createElement("div");
                 div.setAttribute("class", "movie_details");
-                div.innerHTML ='<h2>' + data.title+'</h2>'
-                    + '<br /><img id ="moviecover" src=' + data.image_url + ' alt="image">'
-                    + '<br /><p><b>Genre: </b>' + data.genres 
+                div.setAttribute("id", "movie_det");
+                div.innerHTML = '<h2 id="movietitle">' + data.title + '</h2>'
+                    + '<img src=' + data.image_url + ' alt="image">'
+                    + '<p><b>Genre: </b>' + data.genres 
                     + '<br /><b>Date de sortie: </b>' + data.date_published 
                     + '<br /><b>Rated: </b>' + data.rated
                     + '<br /><b>Score Imdb: </b>' + data.imdb_score
@@ -94,4 +120,47 @@ function get_moviedetails(){
             .catch(function (err) {
                 console.log(err);
             });
+}
+
+/*ouverture/fermeture de la modale*/
+const modalContainer = document.querySelector(".modal_container");
+const modalTriggers = document.querySelectorAll(".modal_trigger");  
+
+modalTriggers.forEach(trigger => trigger.addEventListener("click", openModal));   
+
+function openModal(){
+    modalContainer.classList.toggle("active");
+    var elt = this;
+    var idElt = this.getAttribute('id')
+    get_moviedetails(idElt);
+}
+
+
+
+/* caroussel */
+const sliders = document.querySelector(".carousel")
+var scrollPerClick;
+var ImagePadding = 20;
+
+var scrollAmount = 0;
+function sliderScrollLeft(){
+    sliders.scrollTo({
+        top:0,
+        left: (scrollAmount -= scrollPerClick),
+        behavior: "smooth"
+    });
+
+    if(scrollAmount < 0) {
+        scrollAmount=0
+    }
+}
+
+function sliderScrollRight() {
+    if(scrollAmount <= sliders.scrollWidth - sliders.clientWidth) {
+        sliders.scrollTo({
+            top:0,
+            left: (scrollAmount += scrollPerClick),
+            behavior: "smooth"
+        });
+    }
 }
