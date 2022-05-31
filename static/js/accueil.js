@@ -70,9 +70,9 @@ function get_bestmovie(){
             return response.json();
         })
         .then(function (data) {
-            var mainContainer = document.getElementById("bestmovie");
+            var mainContainer = document.getElementById("bestmovie_img");
             var div = document.createElement("div");
-            div.setAttribute("class", "bestmovie");
+            div.setAttribute("class", "bestmovie_img");
             div.setAttribute("id", data.results[0].id);
             div.innerHTML = '<img src=' + data.results[0].image_url + ' alt='+data.results[0].title + '>';
             mainContainer.appendChild(div);
