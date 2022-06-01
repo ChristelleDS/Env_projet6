@@ -43,7 +43,7 @@ nav a:hover
     color: black;
 }
 
-#button-play
+.button-play
 {
     background: #e71616;
     border-radius: 20px;
@@ -61,7 +61,7 @@ nav a:hover
     height: 50px;
     width: 100px;
 }
-#button-play:hover
+.button-play:hover
 {
     color:  black;
 }
@@ -90,7 +90,7 @@ h2
     padding-top: 40px;
 }
 
-#bestmovie{
+.bestmovie{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -171,9 +171,6 @@ footer
     margin-top: 100px;
 }
 
-.modal_trigger{
-    cursor: pointer;
-}
 
  /* The Modal */
 .modal_btn{
@@ -186,18 +183,18 @@ footer
 }
 
 .modal_container{
-    visibility: hidden; 
-    position:  fixed;
+   /*visibility: hidden;
+    position:  fixed;*/
+    display: none;
     top: 0;
     width: 100%;
     height: 100%;
 }
-.modal_container.active{
-    visibility: visible;
-}
+
 
 .overlay{
-    position:  absolute;
+    /* position:  absolute; */
+    display: none;
     width:  100%;
     height: 100%;
     background: #333333d3;
@@ -214,7 +211,8 @@ footer
     top: 40%;
     margin-top: 200px;
     left: 50%;
-    height:  350px;
+    min-height: 200px;
+    height:  auto;
     transform: translate(-50%, -50%);
     overflow-y: auto;
     border-radius: 5px;
@@ -234,15 +232,12 @@ footer
   cursor: pointer;
   background:  #d5d8dc ;
   color:  #17202a;
-
 }
 
-.movie_details{
+.movieDetails{
     margin-bottom: 10px;
     margin-top: 20px;
     font-family: --polices;
-}
-.movie_details.img {
 }
 
 
@@ -253,4 +248,8 @@ footer
  #bestmovie_section{
     flex-direction: column;
  }
+}
+
+ul {
+  list-style-type: none;
 }
