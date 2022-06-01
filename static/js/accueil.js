@@ -20,7 +20,7 @@ function createButton(bloc_id, id, src){
         var div = document.getElementById(bloc_id);
         var but = document.createElement("button");
         but.setAttribute("onclick", "document.getElementById('modal1').style.display='block', get_moviedetails(id)");
-        but.setAttribute("class", "modal_btn"); 
+        but.setAttribute("class", "modal_btn movie"); 
         but.setAttribute("id", id);
         var img = document.createElement("img");
         img.setAttribute("src",src);
@@ -182,4 +182,3 @@ function openModal(){
     modalContainer.classList.toggle("active");
     get_moviedetails(this.id);
 }
-
