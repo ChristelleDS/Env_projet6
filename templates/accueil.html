@@ -7,8 +7,6 @@
         
     </head>    
 
-    <script defer src="/static/js/accueil.js"></script>
-
     <body>
 
         <header>
@@ -23,19 +21,19 @@
 
         <div id="bestmovie_section">
             <!-- Best movie -->
-            <div id="bestmovie"></div>
-            <div id="bestmovie_title"></div>
-            <button id="button-play" class="modal_trigger">Play</button>
-            <div id="desc"></div>
+            <div id="bestmovie_img"></div>
+            <div class="bestmovie">
+                <div id="bestmovie_title"></div>
+                <div id="desc"></div>
+            </div>
+            
         </div>
         
         <!-- best rated movies -->
         <h2>Films les mieux notés</h2>
         <div id="bestrated" class="category">
             <button class="leftbutton nav_btn" onclick="sliderScrollLeft()"> ᐊ </button>
-             <button class="modal_trigger" role="dialog" aria-labelledby="best movies" aria-describedby="best movies">
-                <div id="bestrated_list" class="carousel"></div>
-            </button>
+            <div id="bestrated_list" class="carousel"></div>
             <button class="rightbutton nav_btn" onclick="sliderScrollRight()"> ᐅ </button>
         </div>
         
@@ -63,19 +61,16 @@
             <button class="rightbutton nav_btn" onclick="sliderScrollRight()"> ᐅ </button>
         </div>
 
-                <!-- Modale -->
-        <div class="modal_container">
-            <!-- Overlay -->
-            <div class="overlay modal_trigger"></div>
-            <!-- Contenu de la modale -->
+
+        <div id="modal1" class="modal_container">
+            <div class="overlay" onclick="document.getElementById('overlay').style.display='none'"></div>
             <div class="modal" role="dialog" aria-labelledby="movietitle" aria-describedby="movie_det">
-                <button class="close_modal modal_trigger">X</button>
+                <span onclick="document.getElementById('modal1').style.display='none'"
+                class="close_modal">&times;</span>
                 <div id="movie_details">
                 </div>
             </div>
         </div>
-
-        <!-- <button class="modal_btn modal_trigger"> Test modal </button>  -->
 
         <script src="/static/js/accueil.js"></script>
 
