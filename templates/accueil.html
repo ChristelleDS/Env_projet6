@@ -63,10 +63,10 @@
 
 
         <div id="modal1" class="modal_container">
-            <div class="overlay" onclick="document.getElementById('overlay').style.display='none'"></div>
+            <div id="overlay" onclick="document.getElementById('overlay').style.display='none'"></div>
             <div class="modal" role="dialog" aria-labelledby="movietitle" aria-describedby="movie_det">
                 <span onclick="document.getElementById('modal1').style.display='none'"
-                class="close_modal">&times;</span>
+                id="close_modal">&times;</span>
                 <div id="movie_details">
                 </div>
             </div>
