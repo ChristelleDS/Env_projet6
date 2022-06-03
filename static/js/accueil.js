@@ -1,17 +1,20 @@
-/* reste a gerer les pages multiples */
-function get_listmovies(genre, bloc_id){
+function get_listmovies(genre, bloc_id){          /* BLOC_ID = carousel-content?
     /* récupérer par API la liste des films */
-    url = 'http://localhost:8000/api/v1/titles/?genre='+genre+'&sort_by=-imdb_score'
-    fetch(url)
-        .then(function (response) {
-        return response.json();
-        })
-        .then(function (data) {
-            append_item(data, bloc_id);
-        })
-        .catch(function (err) {
-            console.log(err);
-        });
+    url1 = 'http://localhost:8000/api/v1/titles/?genre='+genre+'&sort_by=-imdb_score';
+    url2 = 'http://localhost:8000/api/v1/titles/?genre='+genre+'&page=2&sort_by=-imdb_score';
+    Promise.all([
+            fetch(url1).then(value => value.json()),
+            fetch(url2).then(value => value.json())
+            ])
+            .then((value) => {
+                var json1 = value[0].results;
+                var json2 = value[1].results;
+                var liste = json1.concat(json2);
+                append_item(liste, bloc_id);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
 }
 
 
@@ -20,7 +23,7 @@ function createButton(bloc_id, id, src){
         var div = document.getElementById(bloc_id);
         var but = document.createElement("button");
         but.setAttribute("onclick", "document.getElementById('modal1').style.display='block', get_moviedetails(id)");
-        but.setAttribute("class", "modal_btn"); 
+        but.setAttribute("class", "slide modal_btn movie");   /* ajouter class slide pour le caroussel ??! */
         but.setAttribute("id", id);
         var img = document.createElement("img");
         img.setAttribute("src",src);
@@ -31,23 +34,23 @@ function createButton(bloc_id, id, src){
 
 function append_item(data, bloc_id) {
     /* Créer un bouton pour chaque film */
-  var mainContainer = document.getElementById(bloc_id);
   switch (bloc_id){
     case 'bestrated_list':
     // exclure le meilleur film
       for (var i = 1; i < 7 ; i++) {
-        createButton(bloc_id, data.results[i].id, data.results[i].image_url);
+        createButton(bloc_id, data[i].id, data[i].image_url);
       }
     default:
-        for (var i = 0; i < 6 ; i++) {
-            createButton(bloc_id, data.results[i].id, data.results[i].image_url);
+        for (var i = 0; i < 7 ; i++) {
+            createButton(bloc_id, data[i].id, data[i].image_url);
         }
     }
 }
 
 
 get_listmovies("", "bestrated_list");
-get_listmovies("action", "action_list");
+get_listmovies("action", "action_list");  
+get_listmovies("action", "carousel-content");
 get_listmovies("comedy", "comedy_list");
 get_listmovies("drama", "drama_list");
 
@@ -172,7 +175,7 @@ function sliderScrollRight() {
 }
 
 
-/* ouverture/fermeture de la modale */
+/* ouverture/fermeture de la modale 
 const modalContainer = document.querySelector(".modal_container");
 const modalTriggers = document.querySelectorAll(".modal_trigger");  
 
@@ -182,4 +185,5 @@ function openModal(){
     modalContainer.classList.toggle("active");
     get_moviedetails(this.id);
 }
+*/
 
