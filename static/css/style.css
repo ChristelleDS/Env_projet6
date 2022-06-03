@@ -122,6 +122,7 @@ h2
     align-items: center;
 }
 
+
 .movie
 {
     display:  flex;
@@ -216,6 +217,7 @@ footer
     overflow-y: auto;
     border-radius: 5px;
     transition: .1s;
+    z-index: 2;
 }
 
 /* The Close Button */
@@ -248,3 +250,5 @@ footer
     flex-direction: column;
  }
 }
+
+
