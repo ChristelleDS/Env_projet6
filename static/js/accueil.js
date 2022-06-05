@@ -34,17 +34,14 @@ function createButton(bloc_id, id, src){
 
 function append_item(data, bloc_id) {
     /* Créer un bouton pour chaque film */
-  switch (bloc_id){
-    case 'bestrated_list':
-    // exclure le meilleur film
-      for (var i = 1; i < 7 ; i++) {
-        createButton(bloc_id, data[i].id, data[i].image_url);
-      }
-    default:
-        for (var i = 0; i < 7 ; i++) {
+    if (bloc_id=="bestrated_list"){
+        // exclure le meilleur film
+          for (var i = 1; i < 8 ; i++) 
             createButton(bloc_id, data[i].id, data[i].image_url);
+        } else {
+            for (var i = 0; i < 7 ; i++) 
+                createButton(bloc_id, data[i].id, data[i].image_url);
         }
-    }
 }
 
 
@@ -142,48 +139,4 @@ function get_moviedetails(movie_id){
                 console.log(err);
             });
 }
-
-
-
-
-/* caroussel */
-const sliders = document.querySelector(".carousel")
-var scrollPerClick;
-var ImagePadding = 20;
-
-var scrollAmount = 0;
-function sliderScrollLeft(){
-    sliders.scrollTo({
-        top:0,
-        left: (scrollAmount -= scrollPerClick),
-        behavior: "smooth"
-    });
-
-    if(scrollAmount < 0) {
-        scrollAmount=0
-    }
-}
-
-function sliderScrollRight() {
-    if(scrollAmount <= sliders.scrollWidth - sliders.clientWidth) {
-        sliders.scrollTo({
-            top:0,
-            left: (scrollAmount += scrollPerClick),
-            behavior: "smooth"
-        });
-    }
-}
-
-
-/* ouverture/fermeture de la modale 
-const modalContainer = document.querySelector(".modal_container");
-const modalTriggers = document.querySelectorAll(".modal_trigger");  
-
-modalTriggers.forEach(trigger => trigger.addEventListener("click", openModal));   
-
-function openModal(){
-    modalContainer.classList.toggle("active");
-    get_moviedetails(this.id);
-}
-*/
 
