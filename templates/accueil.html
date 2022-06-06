@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="/static/css/style.css"/>
@@ -26,46 +26,106 @@
                 <div id="bestmovie_title"></div>
                 <div id="desc"></div>
             </div>
-            
-        </div>
-        
-        <!-- best rated movies -->
-        <h2>Films les mieux notés</h2>
-        <div id="bestrated" class="category">
-            <button class="leftbutton nav_btn" onclick="sliderScrollLeft()"> ᐊ </button>
-            <div id="bestrated_list" class="carousel"></div>
-            <button class="rightbutton nav_btn" onclick="sliderScrollRight()"> ᐅ </button>
-        </div>
-        
-        <!-- category 1 movies -->
-        <h2>Action</h2>
-        <div id="action" class="category">
-            <button class="leftbutton nav_btn" onclick="sliderScrollLeft()"> ᐊ </button>
-            <div id="action_list" class="carousel"></div>
-            <button class="rightbutton nav_btn" onclick="sliderScrollRight()"> ᐅ </button>
         </div>
 
-        <!-- category 2 movies-->
+        <h2>Films les mieux notés</h2>
+        <div class="carousel js-product-carousel">
+          <div class="carousel__view">
+            <span class="carousel__control js-carousel-prev"><i class="icon"> < </i></span>
+            <span class="carousel__control js-carousel-next"><i class="icon"> > </i></span>
+            <ul id="bestrated_list" class="product-list js-product-list">
+                <li id="best1" class="product-list__item"></li>
+                <li id="best2" class="product-list__item"></li>
+                <li id="best3" class="product-list__item"></li>
+                <li id="best4" class="product-list__item"></li>
+                <li id="best5" class="product-list__item"></li>
+                <li id="best6" class="product-list__item"></li>
+                <li id="best7" class="product-list__item"></li>
+            </ul>
+          </div>
+        </div>
+
+
+        <h2>Action</h2>
+        <div class="carousel js-product-carousel">
+          <div class="carousel__view">
+            <span class="carousel__control js-carousel-prev"><i class="icon"> < </i></span>
+            <span class="carousel__control js-carousel-next"><i class="icon"> > </i></span>
+            <ul id="action_list" class="product-list js-product-list">
+                <li id="act1" class="product-list__item"></li>
+                <li id="act2" class="product-list__item"></li>
+                <li id="act3" class="product-list__item"></li>
+                <li id="act4" class="product-list__item"></li>
+                <li id="act5" class="product-list__item"></li>
+                <li id="act6" class="product-list__item"></li>
+                <li id="act7" class="product-list__item"></li>
+            </ul>
+          </div>
+        </div>
+
+
         <h2>Comedy</h2>
-        <div id="comedy" class="category">
-            <button class="leftbutton nav_btn" onclick="sliderScrollLeft()"> ᐊ </button>
-            <div id="comedy_list" class="carousel"></div>
-            <button class="rightbutton nav_btn" onclick="sliderScrollRight()"> ᐅ </button>
+        <div class="carousel js-product-carousel">
+          <div class="carousel__view">
+            <span class="carousel__control js-carousel-prev"><i class="icon"> < </i></span>
+            <span class="carousel__control js-carousel-next"><i class="icon"> > </i></span>
+            <ul id="comedy_list" class="product-list js-product-list">
+                <li id="com1" class="product-list__item"></li>
+                <li id="com2" class="product-list__item"></li>
+                <li id="com3" class="product-list__item"></li>
+                <li id="com4" class="product-list__item"></li>
+                <li id="com5" class="product-list__item"></li>
+                <li id="com6" class="product-list__item"></li>
+                <li id="com7" class="product-list__item"></li>
+            </ul>
+          </div>
         </div>
-        
-        <!-- category 3 movies-->
+
+
         <h2>Drama</h2>
-        <div id="drama" class="category">
-            <button class="leftbutton nav_btn" onclick="sliderScrollLeft()"> ᐊ </button>
-            <div id="drama_list"  class="carousel"></div>
-            <button class="rightbutton nav_btn" onclick="sliderScrollRight()"> ᐅ </button>
+        <div class="carousel js-product-carousel">
+          <div class="carousel__view">
+            <span class="carousel__control js-carousel-prev"><i class="icon"> < </i></span>
+            <span class="carousel__control js-carousel-next"><i class="icon"> > </i></span>
+            <ul id="drama_list" class="product-list js-product-list">
+              <li class="product-list__item">
+                <div data-slide="1" class="product">
+                  <span>1</span>
+                </div>
+              </li>
+              <li class="product-list__item">
+                <div data-slide="2" class="product">
+                  <span>2</span>
+                </div>
+              </li>
+              <li class="product-list__item">
+                <div data-slide="3" class="product">
+                  <span>3</span>
+                </div>
+              </li>
+              <li class="product-list__item">
+                <div data-slide="4" class="product">
+                  <span>4</span>
+                </div>
+              </li>
+              <li class="product-list__item">
+                <div data-slide="5" class="product">
+                  <span>5</span>
+                </div>
+              </li>
+              <li class="product-list__item">
+                <div data-slide="6" class="product">
+                  <span>6</span>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
+
 
         <div id="modal1" class="modal_container">
-            <div id="overlay" onclick="document.getElementById('overlay').style.display='none'"></div>
-            <div class="modal" role="dialog" aria-labelledby="movietitle" aria-describedby="movie_det">
-                <span onclick="document.getElementById('modal1').style.display='none'"
-                id="close_modal">&times;</span>
+            <div class="modal" role="dialog">
+                <button type="button" id="close_modal" aria-label="Close">&times;</button>
                 <div id="movie_details">
                 </div>
             </div>
@@ -76,6 +136,7 @@
         <footer>
             <p>Copyright JustStreamIt</p>
         </footer>
+
     </body>
 </html>
 
