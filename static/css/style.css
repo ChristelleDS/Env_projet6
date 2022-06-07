@@ -16,7 +16,7 @@ header
 #site
 {
     width: 50%;
-    padding-left: 50px;
+    padding-left: 20%;
 }
 
 h1
@@ -44,11 +44,10 @@ nav a:hover
 }
 
 .button-play
-{
-    background: #e71616;
+{   background: #e71648; 
     border-radius: 20px;
     cursor: pointer;
-    font-family: --polices;
+    font-family: var(--polices);
     color:  white;
     font-size: 120%;
     font-weight: 500;
@@ -69,13 +68,13 @@ nav a:hover
 p
 {
     font-size: 14px;
-    font-family: --polices;
+    font-family: var(--polices);
 }
 
 h2
 {
     text-align: center;
-    font-family: --polices;
+    font-family: var(--polices);
     margin-top: 50px;
 }
 
@@ -126,20 +125,19 @@ footer
 }
 
 .modal_container{
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px; 
     top: 0;
     left: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
 
 }
-
 
 .modal {
     width: 95%; 
@@ -147,7 +145,7 @@ footer
     min-width: 300px;
     padding: 40px;
     background: #fff;
-    position: absolute; /* Stay in place */
+    position: absolute; 
     top: 40%;
     margin-top: 20px;
     left: 50%;
@@ -175,8 +173,7 @@ footer
 }
 
 .movieDetails{
-    margin-bottom: 10px;
-    margin-top: 20px;
+    margin-bottom: 50px;
     font-family: var(--polices);
 }
 
@@ -196,7 +193,7 @@ footer
   margin: 20px;
 }
 .carousel__view {
-  width: calc((200px * 4) + 22px);
+  width: calc((200px*4) + 22px);
   height: 300px;
   background: white;
   box-shadow: 0 1px 8px #888888;
@@ -217,8 +214,6 @@ footer
   display: table-cell;
   vertical-align: middle;
   text-align: center;
-  font-weight: bold;
-  font-size: 30px;
 }
 .carousel__control:hover {
   background-color: rgba(221, 221, 221, 0.8);
@@ -250,5 +245,4 @@ footer
   height: 100%;
   width: 100%;
 }
-
 
