@@ -76,15 +76,13 @@ function get_listmovies(genre, bloc_id){
 function createButton(bloc_id, id, src){
     /* créer un bouton déclenchant l'ouverture de la modale présentant les infos sur le film */
         var div = document.getElementById(bloc_id);
-        var but = document.createElement("button");
-        but.setAttribute("onclick", "document.getElementById('modal1').style.display='block', get_moviedetails(id)");
-        but.setAttribute("class", "product modal_btn");
-        but.setAttribute("data-slide",bloc_id.substr(-1));   
-        but.setAttribute("id", id);
         var img = document.createElement("img");
         img.setAttribute("src",src);
-        but.appendChild(img);
-        div.appendChild(but); 
+        img.setAttribute("onclick", "document.getElementById('modal1').style.display='block', get_moviedetails(id)");
+        img.setAttribute("class", "product modal_btn");
+        img.setAttribute("data-slide",bloc_id.substr(-1));   
+        img.setAttribute("id", id);
+        div.replaceChild(img, div.firstChild);
 }
 
 
@@ -109,6 +107,54 @@ get_listmovies("comedy", "comedy_list");
 get_listmovies("drama", "drama_list");
 
 
+
+
+/* CAROUSEL CODE */
+
+(function() {
+  var carousels = document.querySelectorAll('.js-product-carousel');
+  
+  [].forEach.call(carousels, function(carousel) {
+    carouselize(carousel);
+  });
+  
+})();
+
+function carouselize(carousel) {
+  var productList = carousel.querySelector('.js-product-list');
+  var productListWidth = 0;
+  var productListSteps = 0;
+  var products = carousel.querySelectorAll('.product');
+  var productAmount = 0;
+  var productAmountVisible = 4;
+  var carouselPrev = carousel.querySelector('.js-carousel-prev');
+  var carouselNext = carousel.querySelector('.js-carousel-next');
+
+  //Count all the products
+  [].forEach.call(products, function(product) {
+    productAmount++;
+    productListWidth += 250;
+    productList.style.width = productListWidth+"px";
+  });
+
+  carouselNext.onclick = function() {
+    if(productListSteps < productAmount-productAmountVisible) {
+      productListSteps++;
+      moveProductList();
+    }
+  }
+  carouselPrev.onclick = function() {
+    if(productListSteps > 0) {
+      productListSteps--;
+      moveProductList();
+    }
+  }
+  
+  // Move the carousels product-list
+  function moveProductList() {
+    productList.style.transform = "translateX(-"+205*productListSteps+"px)";
+  }
+}
 
 
 
@@ -148,19 +194,21 @@ function get_moviedetails(movie_id){
             });
 }
 
-
 // Get the modal
 var modal = document.getElementById("modal1");
 
 // Get the button that opens the modal
-var btn = document.getElementsByClassName("modal_btn");
+var btn = document.querySelectorAll('.modal_btn');
+/*btn.forEach(trigger => trigger.addEventListener("click", openModal)); */
 
 // Get the <span> element that closes the modal
 var span = document.getElementById("close_modal");
 
 // When the user clicks the button, open the modal 
-btn.onclick = function() {
+btn.onclick = function() {  
+/* function openModal() { */
   modal.style.display = "block";
+  get_moviedetails(this.id);
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -174,58 +222,3 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-
-
-
-
-
-/* CAROUSEL CODE */
-
-(function() {
-  var carousels = document.querySelectorAll('.js-product-carousel');
-  
-  [].forEach.call(carousels, function(carousel) {
-    carouselize(carousel);
-  });
-  
-})();
-
-function carouselize(carousel) {
-  var productList = carousel.querySelector('.js-product-list');
-  var productListWidth = 0;
-  var productListSteps = 0;
-  var products = carousel.querySelectorAll('.product');
-  var productAmount = 0;
-  var productAmountVisible = 4;
-  var carouselPrev = carousel.querySelector('.js-carousel-prev');
-  var carouselNext = carousel.querySelector('.js-carousel-next');
-
-  //Count all the products
-  [].forEach.call(products, function(product) {
-    productAmount++;
-    productListWidth += 250;
-    productList.style.width = productListWidth+"px";
-  });
-
-  carouselNext.onclick = function() {
-    if(productListSteps <productAmount-productAmountVisible) {
-      productListSteps++;
-      moveProductList();
-    }
-  }
-
-  carouselPrev.onclick = function() {
-    if(productListSteps > 0) {
-      productListSteps--;
-      moveProductList();
-    }
-  }
-  
-  // Move the carousels product-list
-  function moveProductList() {
-    productList.style.transform = "translateX(-"+205*productListSteps+"px)";
-  }
-}
-
-
-
