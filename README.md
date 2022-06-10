@@ -22,4 +22,4 @@ pip install -r requirements.txt
 
 # Lancement du programme
 
-python main.py
+python app.py
