@@ -78,7 +78,6 @@ function createButton(bloc_id, id, src){
         var div = document.getElementById(bloc_id);
         var img = document.createElement("img");
         img.setAttribute("src",src);
-        img.setAttribute("onclick", "document.getElementById('modal1').style.display='block', get_moviedetails(id)") 
         img.setAttribute("class", "product modal_btn");
         img.setAttribute("data-slide",bloc_id.substr(-1));
         img.setAttribute("id", id);
@@ -202,6 +201,15 @@ var modal = document.getElementById("modal1");
 // Get the <span> element that closes the modal
 var span = document.getElementById("close_modal");
 
+// Get the button that opens the modal
+const btn = document.querySelectorAll(".product-list__item");
+
+ for (let i = 0; i < btn.length; i++) {
+     btn[i].addEventListener("click", function() {
+       modal.style.display = "block";
+       get_moviedetails(btn[i].firstChild.id);
+     });
+ }
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
