@@ -214,6 +214,7 @@ footer
   display: table-cell;
   vertical-align: middle;
   text-align: center;
+  font-size: 30px;
 }
 .carousel__control:hover {
   background-color: rgba(221, 221, 221, 0.8);
