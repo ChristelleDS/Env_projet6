@@ -2,8 +2,8 @@
 
 function get_description(movie_id){
     /* récupérer la description du meilleur film par API */
-    url =  'http://localhost:8000/api/v1/titles/'+movie_id
-    fetch(url)   
+    url =  "http://localhost:8000/api/v1/titles/" + movie_id ;
+    fetch(url)
         .then(function (response) {
             return response.json();
         })
@@ -20,7 +20,7 @@ function get_description(movie_id){
 
 function get_bestmovie(){
     /* Récupérer le meilleur film par API et créer le bloc dans le DOM */
-    fetch('http://localhost:8000/api/v1/titles/?sort_by=-imdb_score')
+    fetch("http://localhost:8000/api/v1/titles/?sort_by=-imdb_score")
         .then(function (response) {
             return response.json();
         })
@@ -28,19 +28,19 @@ function get_bestmovie(){
             var mainContainer = document.getElementById("bestmovie_img");
             var div = document.createElement("div");
             div.setAttribute("class", "bestmovie");
-            div.innerHTML = '<img src=' + data.results[0].image_url + '>';
+            div.innerHTML = '<img src=' + data.results[0].image_url + 'alt="image du film">';
             mainContainer.appendChild(div);
-            var mainContainer = document.getElementById("bestmovie_title");
+            var best_div = document.getElementById("bestmovie_title");
             var h2 = document.createElement("h2");
             h2.setAttribute("class", "bestmovie_title");
             h2.innerHTML = data.results[0].title;
-            mainContainer.appendChild(h2);
+            best_div.appendChild(h2);
             var but = document.createElement("button");
             but.setAttribute("onclick", "document.getElementById('modal1').style.display='block', get_moviedetails(id)");
             but.setAttribute("class", "button-play modal_btn"); 
             but.setAttribute("id", data.results[0].id);
             but.innerText="Play";
-            mainContainer.appendChild(but);
+            best_div.appendChild(but);
             get_description(data.results[0].id);
         })
         .catch(function (err) {
@@ -78,10 +78,11 @@ function createButton(bloc_id, id, src){
         var div = document.getElementById(bloc_id);
         var img = document.createElement("img");
         img.setAttribute("src",src);
-        img.setAttribute("onclick", "document.getElementById('modal1').style.display='block', get_moviedetails(id)");
+        img.setAttribute("onclick", "document.getElementById('modal1').style.display='block', get_moviedetails(id)");  
         img.setAttribute("class", "product modal_btn");
-        img.setAttribute("data-slide",bloc_id.substr(-1));   
+        img.setAttribute("data-slide",bloc_id.substr(-1));
         img.setAttribute("id", id);
+        img.setAttribute("alt","image du film");
         div.replaceChild(img, div.firstChild);
 }
 
@@ -143,6 +144,7 @@ function carouselize(carousel) {
       moveProductList();
     }
   }
+
   carouselPrev.onclick = function() {
     if(productListSteps > 0) {
       productListSteps--;
@@ -163,7 +165,7 @@ function carouselize(carousel) {
 
 function get_moviedetails(movie_id){
     /* récupérer les informations sur un film, pour affichage dans la modale*/
-    url = 'http://localhost:8000/api/v1/titles/'+movie_id;
+    url = "http://localhost:8000/api/v1/titles/"+movie_id;
         fetch(url)
             .then(function (response) {
             return response.json();
@@ -199,14 +201,14 @@ var modal = document.getElementById("modal1");
 
 // Get the button that opens the modal
 var btn = document.querySelectorAll('.modal_btn');
-/*btn.forEach(trigger => trigger.addEventListener("click", openModal)); */
+/* btn.forEach(trigger => trigger.addEventListener("click", openModal)); */
 
 // Get the <span> element that closes the modal
 var span = document.getElementById("close_modal");
 
 // When the user clicks the button, open the modal 
-btn.onclick = function() {  
-/* function openModal() { */
+ btn.onclick = function() {  
+/*  function openModal() {   */
   modal.style.display = "block";
   get_moviedetails(this.id);
 }
